@@ -21,7 +21,7 @@ public class ElasticsearchTweetController {
 
     //TODO: A function that gets tweets
     public static class GetTweetsTask extends AsyncTask<String, Void, ArrayList<Tweet>> {
-        
+
     }
 
     //TODO: A function that adds a tweet
