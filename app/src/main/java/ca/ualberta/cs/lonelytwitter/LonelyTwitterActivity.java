@@ -51,13 +51,14 @@ public class LonelyTwitterActivity extends Activity {
 
             public void onClick(View v) {
                 String text = bodyText.getText().toString();
-                Tweet latestTweet = new NormalTweet(text);
+                NormalTweet latestTweet = new NormalTweet(text);
 
                 tweets.add(latestTweet);
                 adapter.notifyDataSetChanged();
 
                 // TODO: Replace with Elasticsearch
-                saveInFile();
+                new ElasticsearchTweetController.AddTweetTask().execute(latestTweet);
+                //saveInFile();
 
                 setResult(RESULT_OK);
             }
