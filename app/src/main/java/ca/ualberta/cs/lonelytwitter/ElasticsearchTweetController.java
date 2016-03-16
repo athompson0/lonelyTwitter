@@ -9,6 +9,8 @@ import com.searchly.jestdroid.JestDroidClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import io.searchbox.core.DocumentResult;
@@ -58,6 +60,13 @@ public class ElasticsearchTweetController {
                 if(execute.isSucceeded()) {
                     List<NormalTweet> foundTweets = execute.getSourceAsObjectList(NormalTweet.class);
                     tweets.addAll(foundTweets);
+
+                    Collections.sort(tweets, new Comparator<Tweet>() {
+                        public int compare(Tweet tweet1, Tweet tweet2) {
+                            return -(tweet1.getDate().compareTo(tweet2.getDate()));
+                        }
+                    });
+
                 } else {
                     Log.i("TODO", "Search was unsuccessful, do something!");
                 }
